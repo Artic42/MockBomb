@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "mock_bomb"
+version = "0.1.0"
+description = "A project to make a mock bomb with a raspberry pi"
+authors = ["Artic42 <main@artic42.com>"]
+license = "MIT license"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+rpi-gpio = "^0.7.1"
+articlib = "^0.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
