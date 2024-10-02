@@ -1,29 +1,34 @@
 # Description: This is a mock bomb that will be used
 # to test the bomb defusal program.
 import time
-from mock_bomb import hardware as HW
+from src import hardware as HW
 import articlib.articFileUtils as fileUtils
 
 
 def main():
     HW.HWInit()
+
+    HW.screen.screenInit()
+    HW.screen.clearDisplay()
+    HW.screen.returnHome()
+    HW.screen.sendString("Mock Bomb")
     while not fileUtils.fileExists("/home/artic/stop"):
-        if HW.buttonEnter.isPressed():
-            HW.redLED.on()
-            HW.greenLED.off()
-            HW.yellowLED.off()
-        elif HW.buttonUp.isPressed():
-            HW.redLED.off()
-            HW.greenLED.on()
-            HW.yellowLED.off()
-        elif HW.buttonDown.isPressed():
-            HW.redLED.off()
-            HW.greenLED.off()
-            HW.yellowLED.on()
-        elif HW.buttonBack.isPressed():
-            HW.redLED.off()
-            HW.greenLED.off()
-            HW.yellowLED.off()
+        if HW.buttonEnter.isLOW():
+            HW.redLED.setHIGH()
+            HW.greenLED.setLOW()
+            HW.yellowLED.setLOW()
+        elif HW.buttonUp.isLOW():
+            HW.redLED.setLOW()
+            HW.greenLED.setHIGH()
+            HW.yellowLED.setLOW()
+        elif HW.buttonDown.isLOW():
+            HW.redLED.setLOW()
+            HW.greenLED.setLOW()
+            HW.yellowLED.setHIGH()
+        elif HW.buttonBack.isLOW():
+            HW.redLED.setLOW()
+            HW.greenLED.setLOW()
+            HW.yellowLED.setLOW()
         time.sleep(0.1)
     fileUtils.deleteFile("/home/artic/stop")
 
