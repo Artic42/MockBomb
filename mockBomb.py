@@ -9,9 +9,9 @@ def main():
     HW.HWInit()
 
     HW.screen.screenInit()
-    HW.screen.clearDisplay()
-    HW.screen.returnHome()
-    HW.screen.sendString("Mock Bomb")
+    HW.screen.sendString("BOMB READY")
+    HW.screen.setDDRAMAddress(0x40)
+    HW.screen.sendString("PRESS ARM")
     while not fileUtils.fileExists("/home/artic/stop"):
         if HW.buttonEnter.isLOW():
             HW.redLED.setHIGH()
