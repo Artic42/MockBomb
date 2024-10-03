@@ -18,6 +18,9 @@ def HWInit():
     global greenLED
     global yellowLED
     global screen
+    global greenCable
+    global blueCable
+    global purpleCable
 
     # Set the GPIO mode to BCM.
     GPIO.setmode(GPIO.BCM)
@@ -32,6 +35,10 @@ def HWInit():
     redLED = output.Output(pinout.REDLED_PIN)
     greenLED = output.Output(pinout.GREENLED_PIN)
     yellowLED = output.Output(pinout.YELLOWLED_PIN)
+
+    greenCable = input.Input(pinout.CABLEGREEN_PIN)
+    blueCable = input.Input(pinout.CABLEBLUE_PIN)
+    purpleCable = input.Input(pinout.CABLEPURPLE_PIN)
 
     screen = screenLCD.LCDScreen(
         pinout.SCREENRS_PIN,
