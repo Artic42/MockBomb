@@ -3,7 +3,7 @@
 import time
 from src import hardware as HW
 from src import stateMachine as SM
-from src import APIArmedAlive
+from src import armedAlive
 from src import yellowLED
 import articlib.articFileUtils as fileUtils
 
@@ -12,7 +12,7 @@ def main():
     HW.HWInit()
     yellow = yellowLED.yellowLED()
     state = SM.StateMachine()
-    alive = APIArmedAlive.APIArmedAlive()
+    alive = armedAlive.APIArmedAlive()
     while not fileUtils.fileExists("/home/artic/stop"):
         state.runStateMachine()
         alive.getArmedAlive(state.getState())

@@ -1,4 +1,5 @@
 from src import hardware as HW
+from src import apiCalls
 
 
 # Steate codes
@@ -57,6 +58,7 @@ class StateMachine:
         HW.screen.sendString(stringTime)
         self.timeRemaining -= 1
         if self.timeRemaining <= 0:
+            apiCalls.sendExplodedMessage()
             self.state = STATE_EXPLODED
 
     def getState(self) -> int:
@@ -111,6 +113,7 @@ class StateMachine:
         if HW.buttonEnter.isLOW():
             self.timeRemaining = self.timeSet * 600
             self.timerRunning = True
+            apiCalls.sendArmedMessage()
             self.state = STATE_ARMED
 
     def stateArmed(self) -> None:
@@ -118,15 +121,19 @@ class StateMachine:
         if HW.blueCable.isHIGH():
             self.state = STATE_DEFUSE1
         if HW.purpleCable.isHIGH():
+            apiCalls.sendExplodedMessage()
             self.state = STATE_EXPLODED
         if HW.greenCable.isHIGH():
+            apiCalls.sendExplodedMessage()
             self.state = STATE_EXPLODED
 
     def stateDefuse1(self) -> None:
         self.timerRunning = True
         if HW.purpleCable.isHIGH():
+            apiCalls.sendDefusedMessage()
             self.state = STATE_DEFUSED
         if HW.greenCable.isHIGH():
+            apiCalls.sendExplodedMessage()
             self.state = STATE_EXPLODED
 
     def stateDefused(self) -> None:

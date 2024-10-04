@@ -12,6 +12,7 @@ python = "^3.11"
 rpi-gpio = "^0.7.1"
 articlib = "^0.2.3"
 rpi-artic-lib = "^0.1.1"
+requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
 flake8-pyproject = "^1.2.3"
